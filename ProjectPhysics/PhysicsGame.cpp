@@ -1,6 +1,8 @@
 #include "PhysicsGame.h"
 #include "Input.h"
 #include "Font.h"
+#include "Gizmos.h"
+#include <glm/ext.hpp>
 
 bool PhysicsGame::startup()
 {

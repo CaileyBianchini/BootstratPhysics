@@ -1,6 +1,7 @@
 #pragma once
 #include "Application.h"
 #include "Renderer2D.h"
+#include "PhysicsScene.h"
 
 class PhysicsGame : public aie::Application
 {
@@ -15,7 +16,9 @@ public:
 	virtual void draw();
 
 private:
-	aie::Renderer2D* m_renderer;
-	aie::Font* m_font;
+	aie::Renderer2D*		m_renderer;
+	aie::Font*					m_font;
+
+	PhysicsScene*			m_scene;
 };
 

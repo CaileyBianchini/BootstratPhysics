@@ -17,6 +17,8 @@ public:
 	float getOrientation() { return m_orientation; }
 	float getMass() { return m_mass; }
 
+	void setVelocity(const glm::vec2  velocity) { m_velocity = velocity; }
+
 private:
 	glm::vec2 m_position;
 	glm::vec2 m_velocity;

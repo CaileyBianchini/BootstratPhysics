@@ -18,13 +18,13 @@ bool PhysicsGame::startup()
 	m_scene->setTimeStep(0.01f);
 	m_scene->setGravity({0.0f, -1.0f});
 
-	Sphere* ball = new Sphere(glm::vec2 (0, 21), glm::vec2(0, 1), 1, 6, glm::vec4(0.5f, 0.2f, 1.0f, 1.0f));
+	Sphere* ball = new Sphere(glm::vec2 (0, 21), glm::vec2(), 1, 6, glm::vec4(0.5f, 0.2f, 1.0f, 1.0f));
 	m_scene->addActor(ball);
 
-	Sphere* orb = new Sphere(glm::vec2(0,0), glm::vec2(0, -1), 1, 6, glm::vec4(1.0f, 0.2f, 1.0f, 1.0f));
+	Sphere* orb = new Sphere(glm::vec2(0,0), glm::vec2(), 1, 6, glm::vec4(1.0f, 0.2f, 1.0f, 1.0f));
 	m_scene->addActor(orb);
 
-	Sphere* sphere = new Sphere(glm::vec2(0, -21), glm::vec2(0,0), 1, 6, glm::vec4(3.0f, 0.5f, 1.0f, 1.0f));
+	Sphere* sphere = new Sphere(glm::vec2(0, -21), glm::vec2(), 1, 6, glm::vec4(3.0f, 0.5f, 1.0f, 1.0f));
 	m_scene->addActor(sphere);
 
 	return true;
@@ -47,6 +47,15 @@ void PhysicsGame::update(float deltaTime)
 	m_scene->update(deltaTime);
 
 	//exit on Esc
+	if (input->isKeyDown(aie::INPUT_KEY_UP))
+	{
+		m_scene->setGravity({ 0.0f, 1.0f });
+	}
+	else
+	{
+		m_scene->setGravity({ 0.0f, -1.0f });
+	}
+
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE)){
 		quit();
 	}

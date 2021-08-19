@@ -1,6 +1,7 @@
 #pragma once
 #include <set>
 #include "glm/vec2.hpp"
+#include "Sphere.h"
 class PhysicsObject;
 
 class PhysicsScene
@@ -20,6 +21,8 @@ public:
 
 	void setTimeStep(const float timeStep) { m_timeStep = timeStep;}
 	float getTimeStep() const { return m_timeStep; }
+
+	static bool sphereToSPhere(Sphere* sphere1, Sphere* sphere2);
 
 private:
 	glm::vec2 m_gravity;

@@ -1,5 +1,6 @@
 #include "PhysicsGame.h"
 #include "Sphere.h"
+#include "Plane.h"
 #include "Input.h"
 #include "Font.h"
 #include "Gizmos.h"
@@ -20,12 +21,13 @@ bool PhysicsGame::startup()
 
 	Sphere* ball = new Sphere(glm::vec2 (0, 21), glm::vec2(0, 1), 1, 6, glm::vec4(0.5f, 0.2f, 1.0f, 1.0f));
 	m_scene->addActor(ball);
+	ball->applyForce(glm::vec2(0.0f, 5.0f));
 
 	Sphere* orb = new Sphere(glm::vec2(0,0), glm::vec2(0, -1), 1, 6, glm::vec4(1.0f, 0.2f, 1.0f, 1.0f));
 	m_scene->addActor(orb);
 
-	Sphere* sphere = new Sphere(glm::vec2(0, -21), glm::vec2(0,0), 1, 6, glm::vec4(3.0f, 0.5f, 1.0f, 1.0f));
-	m_scene->addActor(sphere);
+	Plane* surface = new Plane(glm::vec2(0.0f, 1.0f), -41, glm::vec4(4.0f, 0.5f, 1.0f, 1.0f));
+	m_scene->addActor(surface);
 
 	return true;
 }

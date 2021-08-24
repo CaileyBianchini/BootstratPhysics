@@ -19,15 +19,33 @@ bool PhysicsGame::startup()
 	m_scene->setTimeStep(0.01f);
 	/*m_scene->setGravity({0.0f, -10.0f});*/
 
-	Sphere* ball = new Sphere(glm::vec2 (20.0f, 0.0f), glm::vec2(), 1, 6, glm::vec4(0.5f, 0.2f, 1.0f, 1.0f));
-	m_scene->addActor(ball);
-	ball->applyForce(glm::vec2(-5.0f, 0.0f));
+	//q ball
+	Sphere* qball = new Sphere(glm::vec2(40.0f, 0.0f), glm::vec2(), 3, 6, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	m_scene->addActor(qball);
+	qball->applyForce(glm::vec2(-200.0f, 0.0f));
 
-	Sphere* orb = new Sphere(glm::vec2(0.0f,0.0f), glm::vec2(), 1, 6, glm::vec4(1.0f, 0.2f, 1.0f, 1.0f));
-	m_scene->addActor(orb);
+	//ballard balls
+	Sphere* ball1 = new Sphere(glm::vec2(0.0f, 0.0f), glm::vec2(), 1, 6, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+	m_scene->addActor(ball1);
 
-	Plane* surface = new Plane(glm::vec2(0.0f, 1.0f), -30, glm::vec4(4.0f, 0.5f, 1.0f, 1.0f));
-	m_scene->addActor(surface);
+	Sphere* ball2 = new Sphere(glm::vec2(-11.0f, 7.0f), glm::vec2(), 1, 6, glm::vec4(4.0f, 0.0f, 0.0f, 1.0f));
+	m_scene->addActor(ball2);
+
+	Sphere* ball3 = new Sphere(glm::vec2(-11.0f, -7.0f), glm::vec2(), 1, 6, glm::vec4(4.0f, 4.0f, 0.0f, 1.0f));
+	m_scene->addActor(ball3);
+
+	Sphere* ball4 = new Sphere(glm::vec2(-23.0f, 0.0f), glm::vec2(), 1, 6, glm::vec4(4.0f, 4.0f, 0.0f, 1.0f));
+	m_scene->addActor(ball4);
+
+	//edge of table
+	/*Plane* boarder1 = new Plane(glm::vec2(0.0f, 1.8f), -30, glm::vec4(0.6f, 0.4f, 0.0f, 1.0f));
+	m_scene->addActor(boarder1);
+	Plane* boarder2 = new Plane(glm::vec2(3.0f, 0.0f), -30, glm::vec4(0.6f, 0.4f, 0.0f, 1.0f));
+	m_scene->addActor(boarder2);
+	Plane* boarder3 = new Plane(glm::vec2(-3.0f, 0.0f), -30, glm::vec4(0.6f, 0.4f, 0.0f, 1.0f));
+	m_scene->addActor(boarder3);
+	Plane* boarder4 = new Plane(glm::vec2(0.0f, -1.8f), -30, glm::vec4(0.6f, 0.4f, 0.0f, 1.0f));
+	m_scene->addActor(boarder4);*/
 
 	return true;
 }

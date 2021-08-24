@@ -22,7 +22,6 @@ bool PhysicsGame::startup()
 	//q ball
 	Sphere* qball = new Sphere(glm::vec2(40.0f, 0.0f), glm::vec2(), 3, 6, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	m_scene->addActor(qball);
-	qball->applyForce(glm::vec2(-200.0f, 0.0f));
 
 	//ballard balls
 	Sphere* ball1 = new Sphere(glm::vec2(0.0f, 0.0f), glm::vec2(), 1, 6, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
@@ -34,7 +33,7 @@ bool PhysicsGame::startup()
 	Sphere* ball3 = new Sphere(glm::vec2(-11.0f, -7.0f), glm::vec2(), 1, 6, glm::vec4(4.0f, 4.0f, 0.0f, 1.0f));
 	m_scene->addActor(ball3);
 
-	Sphere* ball4 = new Sphere(glm::vec2(-23.0f, 0.0f), glm::vec2(), 1, 6, glm::vec4(4.0f, 4.0f, 0.0f, 1.0f));
+	Sphere* ball4 = new Sphere(glm::vec2(-23.0f, 0.0f), glm::vec2(), 1, 6, glm::vec4(0.1f, 0.8f, 0.0f, 1.0f));
 	m_scene->addActor(ball4);
 
 	//edge of table
@@ -46,6 +45,8 @@ bool PhysicsGame::startup()
 	m_scene->addActor(boarder3);
 	Plane* boarder4 = new Plane(glm::vec2(0.0f, -1.8f), -30, glm::vec4(0.6f, 0.4f, 0.0f, 1.0f));
 	m_scene->addActor(boarder4);*/
+
+	qball->applyForce(glm::vec2(-100.0f, 0.0f));
 
 	return true;
 }

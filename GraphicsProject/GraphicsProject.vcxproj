@@ -87,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories)$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories)$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories);$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\glm</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$SolutionDir)dependencies\glfw\lib-vc2015\x64\;%(AdditionalUsingDirectories)$SolutionDir)dependencies\glfw\lib-vc2015\x64\</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
@@ -103,7 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories);$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\glm</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$SolutionDir)dependencies\glfw\lib-vc2015\;%(AdditionalUsingDirectories)$SolutionDir)dependencies\glfw\lib-vc2015\x64\</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories);$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\glm</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$SolutionDir)dependencies\glfw\lib-vc2015\;%(AdditionalUsingDirectories)$SolutionDir)dependencies\glfw\lib-vc2015\x64\</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
@@ -141,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories)$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glfw\include;%(AdditionalIncludeDirectories)$(SolutionDir)bootstrap;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\glm</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$SolutionDir)dependencies\glfw\lib-vc2015\x64\;%(AdditionalUsingDirectories)$SolutionDir)dependencies\glfw\lib-vc2015\x64\</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
@@ -156,9 +156,13 @@
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Quad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Quad.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

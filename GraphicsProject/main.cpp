@@ -5,7 +5,7 @@
 int main()
 {
 	//initialyze
-	if (!glfwInit() == GLFW_FALSE)
+	if (!glfwInit())
 		return -1;
 
 	//creates a window
@@ -29,6 +29,13 @@ int main()
 	int majorVersion = ogl_GetMajorVersion();
 	int minorVersion = ogl_GetMinorVersion();
 	printf("OpenGL version: %i.%i\n", majorVersion, minorVersion);
+
+	while (!glfwWindowShouldClose(window)
+		&& glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
+	{
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
 
 	//cleans up and exits
 	glfwDestroyWindow(window);

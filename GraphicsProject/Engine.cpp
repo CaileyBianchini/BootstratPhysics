@@ -1,7 +1,10 @@
 #include "Engine.h"
 #include "gl_core_4_4.h"
 #include "GLFW/glfw3.h"
+#include "glm/ext.hpp"
 #include <iostream>
+
+
 Engine::Engine() : Engine(1280, 720, "Window")
 {
 }
@@ -68,13 +71,48 @@ int Engine::start()
 	int minorVersion = ogl_GetMinorVersion();
 	printf("OpenGL version: %i.%i\n", majorVersion, minorVersion);
 
+	//initalizes the screen
+	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+	glEnable(GL_DEPTH_TEST);
+
+	//initializes the shader
+	m_shader.loadShader(
+		aie::eShaderStage::VERTEX,
+		"simplevert.shader"
+	);
+	m_shader.loadShader(
+		aie::eShaderStage::FRAGMENT,
+		"simplefrag.shader"
+	);
+	if (!m_shader.link())
+	{
+		printf("Shader error: %s\n", m_shader.getLastError());
+		return -10;
+	}
+
+	//Initialized the quad
+	m_quad.start();
+
+	//create camera transforms
+	m_viewMatrix = glm::lookAt(
+		glm::vec3(10.f, 10.0f, 10.0f),
+		glm::vec3(0.0f),
+		glm::vec3(0.0f, 1.0f, 0.0f)
+	);
+
+	m_projectionMatrix = glm::perspective(
+		glm::pi<float>() / 4.0f,
+		(float)m_width / (float)m_height,
+		0.001f,
+		1000.0f
+	);
+
 	return 0;
 }
 
 int Engine::update()
 {
 	if (!m_window)return -4;
-
 	glfwPollEvents();
 	return 0;
 }
@@ -83,7 +121,19 @@ int Engine::draw()
 {
 	if (!m_window)return -5;
 
+	//clear the screen
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	m_shader.bind();
+
+	glm::mat4 projectionViewModel = m_projectionMatrix * m_viewMatrix * m_quad.getTransformed();
+
+	m_shader.bindUniform("projectionViewModel", projectionViewModel);
+
+	m_quad.draw();
+
 	glfwSwapBuffers(m_window);
+
 	return 0;
 }
 

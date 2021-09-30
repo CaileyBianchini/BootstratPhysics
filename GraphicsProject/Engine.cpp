@@ -3,19 +3,21 @@
 #include "GLFW/glfw3.h"
 #include "glm/ext.hpp"
 #include <iostream>
-
+#include "World.h"
 
 Engine::Engine() : Engine(1280, 720, "Window")
 {
 }
 Engine::Engine(int width, int height, const char* tittle)
 {
+	m_world = new World(width, height);
 	m_width = width;
 	m_height = height;
 	m_tittle = tittle;
 }
 Engine::~Engine()
 {
+	delete m_world;
 }
 int Engine::run()
 {
@@ -89,24 +91,6 @@ int Engine::start()
 		printf("Shader error: %s\n", m_shader.getLastError());
 		return -10;
 	}
-
-	//Initialized the quad
-	m_quad.start();
-
-	//create camera transforms
-	m_viewMatrix = glm::lookAt(
-		glm::vec3(10.f, 10.0f, 10.0f),
-		glm::vec3(0.0f),
-		glm::vec3(0.0f, 1.0f, 0.0f)
-	);
-
-	m_projectionMatrix = glm::perspective(
-		glm::pi<float>() / 4.0f,
-		(float)m_width / (float)m_height,
-		0.001f,
-		1000.0f
-	);
-
 	return 0;
 }
 
@@ -126,11 +110,11 @@ int Engine::draw()
 
 	m_shader.bind();
 
-	glm::mat4 projectionViewModel = m_projectionMatrix * m_viewMatrix * m_quad.getTransformed();
+	glm::mat4 projectionViewModel = m_world->getProjectionViewMode1();
 
 	m_shader.bindUniform("projectionViewModel", projectionViewModel);
 
-	m_quad.draw();
+	m_world->draw();
 
 	glfwSwapBuffers(m_window);
 

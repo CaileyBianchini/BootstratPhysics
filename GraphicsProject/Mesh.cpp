@@ -34,6 +34,11 @@ void Mesh::start()
 	glBindVertexArray(m_vertexArrayObject);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferObject);
 
+	//Generate the vertices
+	//Vertex* vertices{};
+	//int vertexCount;
+	//generateVertices(vertices, vertexCount);
+
 	//define the vertives for a quad
 	Vertex verticies[6];
 	//triangle 0
@@ -72,4 +77,9 @@ void Mesh::draw()
 {
 	glBindVertexArray(m_vertexArrayObject);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+void Mesh::generateVertices(Vertex* vertices, int& vertexCount)
+{
+	
 }

@@ -14,7 +14,6 @@ public:
 
 	int run();
 
-
 private:
 
 	int start();

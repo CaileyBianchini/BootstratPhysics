@@ -91,13 +91,20 @@ int Engine::start()
 		printf("Shader error: %s\n", m_shader.getLastError());
 		return -10;
 	}
+
+	m_world->start();
+
 	return 0;
 }
 
 int Engine::update()
 {
 	if (!m_window)return -4;
+
 	glfwPollEvents();
+
+	m_world->update();
+
 	return 0;
 }
 
@@ -124,6 +131,8 @@ int Engine::draw()
 int Engine::end()
 {
 	if (!m_window)return -6;
+
+	m_world->end();
 
 	//cleans up and exits
 	glfwDestroyWindow(m_window);

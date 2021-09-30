@@ -42,5 +42,5 @@ void World::end()
 
 glm::mat4 World::getProjectionViewMode1()
 {
-	return m_projectionMatrix * m_viewMatrix * m_quad.getTransformed();
+	return m_projectionMatrix * m_viewMatrix * m_quad.getTransform();
 }

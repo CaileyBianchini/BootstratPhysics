@@ -9,7 +9,7 @@ World::World(int width, int height)
 
 void World::start()
 {
-	//Initialized the quad
+	//Initialized the quad;
 	m_quad.start();
 
 	//create camera transforms

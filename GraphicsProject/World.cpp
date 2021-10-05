@@ -31,16 +31,16 @@ void World::update()
 {
 }
 
-void World::draw()
+void World::draw(aie::ShaderProgram* shader)
 {
-	m_quad.draw();
+	m_quad.draw(shader);
 }
 
 void World::end()
 {
 }
 
-glm::mat4 World::getProjectionViewMode1()
+glm::mat4 World::getProjectionVeiw()
 {
-	return m_projectionMatrix * m_camra.getTransform() * m_quad.getTransform();
+	return m_projectionMatrix * m_camra.getTransform();
 }

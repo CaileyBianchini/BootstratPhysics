@@ -1,4 +1,5 @@
 #pragma once
+#include "Shader.h"
 #include "Camera.h"
 #include "Quad.h"
 #include "glm/mat4x4.hpp"
@@ -11,10 +12,10 @@ public:
 
 	void start();
 	void update();
-	void draw();
+	void draw(aie::ShaderProgram* shader);
 	void end();
 
-	glm::mat4 getProjectionViewMode1();
+	glm::mat4 getProjectionVeiw();
 
 private:
 	int m_width = 1280, m_height = 720;

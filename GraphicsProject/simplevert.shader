@@ -8,10 +8,14 @@ layout(location = 2) in vec4 vNormal;
 uniform mat4 projectionViewModel;
 uniform mat4 modelMatrix;
 
-out vec4 color;
+out vec4 fPosition;
+out vec4 fColor;
+out vec3 fNormal;
 
 void main()
 {
-	color = vColor;
-	gl_Position = projectionViewModel* vPosition;
+	fPosition = vPosition;
+	fColor = vColor;
+	fNormal = (modelMatrix * vNormal).xyz;
+	gl_Position = projectionViewModel * modelMatrix* vPosition;
 }

@@ -183,7 +183,9 @@
     <None Include="simplevert.shader" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="Lucy.obj" />
+    <CopyFileToFolders Include="Lucy.obj">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

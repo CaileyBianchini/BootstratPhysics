@@ -10,6 +10,8 @@ World::World(int width, int height)
 
 void World::start()
 {
+	//Initalizes the obj mesh
+	m_objMesh.load("Lucy.obj", false);
 	//Initialized the quad;
 	m_quad.start();
 	//Inotializes the light
@@ -125,8 +127,10 @@ void World::draw(aie::ShaderProgram* shader)
 	shader->bindUniform("lightAmbient", m_light.getAmbient());
 	shader->bindUniform("lightDiffuse", m_light.getDiffuse());
 	shader->bindUniform("lightSpecular", m_light.getSpecular());
-	shader->bindUniform("specularPower", m_light.getSpecularPower());
-	m_quad.draw(shader);
+	shader->bindUniform("lightSpecularPower", m_light.getSpecularPower());
+	/*m_quad.draw(shader);*/
+	shader->bindUniform("modelMatrix", m_objTransform);
+	m_objMesh.draw();
 }
 
 void World::end()

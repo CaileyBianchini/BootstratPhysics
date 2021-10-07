@@ -128,7 +128,7 @@ void World::draw(aie::ShaderProgram* shader)
 	shader->bindUniform("lightDiffuse", m_light.getDiffuse());
 	shader->bindUniform("lightSpecular", m_light.getSpecular());
 	shader->bindUniform("lightSpecularPower", m_light.getSpecularPower());
-	/*m_quad.draw(shader);*/
+	m_quad.draw(shader);
 	shader->bindUniform("modelMatrix", m_objTransform);
 	m_objMesh.draw();
 }

@@ -17,7 +17,7 @@ public:
 private:
 
 	int start();
-	int update();
+	int update(double deltaTime);
 	int draw(aie::ShaderProgram* shader);
 	int end();
 

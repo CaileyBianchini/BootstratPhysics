@@ -20,11 +20,15 @@ void World::start()
 	m_light.setSpecularPower(1.0f);
 
 	//create camera transforms
-	m_camra.setTransform(glm::lookAt(
+	Transform cameraTransform = m_camra.getTransform();
+	cameraTransform.setPosition(glm::vec3(1.0f));
+	cameraTransform.setRotation(glm::vec3(45.0f, -45.0f, 0.0f));
+	m_camra.setTransform(cameraTransform);
+	/*m_camra.setTransform(glm::lookAt(
 		glm::vec3(5.f, 5.0f, 5.0f),
 		glm::vec3(0.0f),
 		glm::vec3(0.0f, 1.0f, 0.0f)
-	));
+	));*/
 
 	m_projectionMatrix = glm::perspective(
 		m_camra.getFeildOfVeiw() * glm::pi<float>() / 180.0f,
@@ -43,10 +47,7 @@ void World::update(double deltaTime)
 	int keyUp = GLFW_KEY_E;
 	int keyDown = GLFW_KEY_Q;
 
-	float cameraSpeed = 10.0f;
-
-
-
+	float cameraSpeed = 1.0f;
 
 	//calculate the forward vector
 		glm::vec3 cameraForward = glm::vec3(0.0f, 0.0f, 1.0f);
@@ -63,18 +64,8 @@ void World::update(double deltaTime)
 	double deltaMouseY = m_currentMouseY - m_previousMouseY;
 	if (deltaMouseX != 0.0 && deltaMouseY != 0.0)
 	{
-		glm::mat4 cameraTransform = m_camra.getTransform();
-
-		cameraTransform = glm::rotate(
-			cameraTransform, 
-			(float)(deltaMouseX * deltaTime), 
-			cameraUp);
-
-		cameraTransform = glm::rotate(
-			cameraTransform, 
-			(float)(deltaMouseY * deltaTime), 
-			cameraRight);
-
+		Transform cameraTransform = m_camra.getTransform();
+		cameraTransform.rotate(glm::vec3(deltaMouseY, deltaMouseX, 0.0f)  * (float)(cameraSpeed * deltaTime));
 		m_camra.setTransform(cameraTransform);
 	}
 
@@ -86,50 +77,50 @@ void World::update(double deltaTime)
 	if (glfwGetKey(m_window, keyForward))
 	{
 		//moveforward
-		glm::mat4 cameraTranform = m_camra.getTransform();
-		cameraTranform = glm::translate(cameraTranform, cameraForward * cameraSpeed * (float)deltaTime);
+		Transform cameraTranform = m_camra.getTransform();
+		cameraTranform.translate(glm::vec3(cameraForward * cameraSpeed * (float)deltaTime));
 		m_camra.setTransform(cameraTranform);
 	}
 	if (glfwGetKey(m_window, keyBack))
 	{
 		//moveforward
-		glm::mat4 cameraTranform = m_camra.getTransform();
-		cameraTranform = glm::translate(cameraTranform, -cameraForward * cameraSpeed * (float)deltaTime);
+		Transform cameraTranform = m_camra.getTransform();
+		cameraTranform.translate(glm::vec3(-cameraForward * cameraSpeed * (float)deltaTime));
 		m_camra.setTransform(cameraTranform);
 	}
 	if (glfwGetKey(m_window, keyRight))
 	{
 		//moveforward
-		glm::mat4 cameraTranform = m_camra.getTransform();
-		cameraTranform = glm::translate(cameraTranform, cameraRight * cameraSpeed * (float)deltaTime);
+		Transform cameraTranform = m_camra.getTransform();
+		cameraTranform.translate(glm::vec3(cameraRight * cameraSpeed * (float)deltaTime));
 		m_camra.setTransform(cameraTranform);
 	}
 	if (glfwGetKey(m_window, keyLeft))
 	{
 		//moveforward
-		glm::mat4 cameraTranform = m_camra.getTransform();
-		cameraTranform = glm::translate(cameraTranform, -cameraRight * cameraSpeed * (float)deltaTime);
+		Transform cameraTranform = m_camra.getTransform();
+		cameraTranform.translate(glm::vec3(-cameraRight * cameraSpeed * (float)deltaTime));
 		m_camra.setTransform(cameraTranform);
 	}
 	if (glfwGetKey(m_window, keyUp))
 	{
 		//moveforward
-		glm::mat4 cameraTranform = m_camra.getTransform();
-		cameraTranform = glm::translate(cameraTranform, cameraUp * cameraSpeed * (float)deltaTime);
+		Transform cameraTranform = m_camra.getTransform();
+		cameraTranform.translate(glm::vec3(cameraUp * cameraSpeed * (float)deltaTime));
 		m_camra.setTransform(cameraTranform);
 	}
 	if (glfwGetKey(m_window, keyDown))
 	{
 		//moveforward
-		glm::mat4 cameraTranform = m_camra.getTransform();
-		cameraTranform = glm::translate(cameraTranform, -cameraUp * cameraSpeed * (float)deltaTime);
+		Transform cameraTranform = m_camra.getTransform();
+		cameraTranform.translate(glm::vec3(-cameraUp * cameraSpeed * (float)deltaTime));
 		m_camra.setTransform(cameraTranform);
 	}
 }
 
 void World::draw(aie::ShaderProgram* shader)
 {
-	shader->bindUniform("cameraPosition", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	shader->bindUniform("cameraPosition",m_camra.getTransform().getPosition());
 	shader->bindUniform("lightDirection", m_light.getDirection());
 	shader->bindUniform("lightAmbient", m_light.getAmbient());
 	shader->bindUniform("lightDiffuse", m_light.getDiffuse());
@@ -144,5 +135,5 @@ void World::end()
 
 glm::mat4 World::getProjectionVeiw()
 {
-	return m_projectionMatrix * m_camra.getTransform();
+	return m_projectionMatrix * m_camra.getTransform().getMatrix();
 }

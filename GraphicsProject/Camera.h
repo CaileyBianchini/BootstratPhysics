@@ -1,5 +1,5 @@
 #pragma once
-#include "glm/mat4x4.hpp"
+#include "Transform.h"
 
 class Camera
 {
@@ -9,8 +9,8 @@ public:
 		m_feildOfVeiw{ feildOfVeiw }, m_nearClip{ nearClip }, m_farClip{ farClip } {}
 	~Camera() {}
 
-	glm::mat4 getTransform() { return m_transform;  }
-	void setTransform(glm::mat4 transform) { m_transform = transform; }
+	Transform getTransform() { return m_transform;  }
+	void setTransform(Transform transform) { m_transform = transform; }
 	float getFeildOfVeiw() { return m_feildOfVeiw; }
 	void setFeildOfVeiw(float feildOfVeiw) { m_feildOfVeiw = feildOfVeiw; }
 	float getNearClip() { return m_nearClip; }
@@ -19,7 +19,7 @@ public:
 	void setFarClip(float farClip) { m_farClip = farClip; }
 
 private:
-	glm::mat4 m_transform = glm::mat4(1.0f);
+	Transform m_transform = Transform();
 	float m_feildOfVeiw = 45.0f;
 	float m_nearClip = 0.001f;
 	float m_farClip = 1000.0f;

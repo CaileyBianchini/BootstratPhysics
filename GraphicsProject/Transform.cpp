@@ -1,6 +1,24 @@
 #include "Transform.h"
 #include "glm/ext.hpp"
 
+void Transform::translate(glm::vec3 translation)
+{
+	m_position += translation;
+	m_shouldUpdateMatrix = true;
+}
+
+void Transform::rotate(glm::vec3 rotation)
+{
+	m_rotation += rotation;
+	m_shouldUpdateMatrix = true;
+}
+
+void Transform::scale(glm::vec3 scale)
+{
+	m_scale += scale;
+	m_shouldUpdateMatrix = true;
+}
+
 void Transform::setPosition(glm::vec3 position)
 {
 	m_position = position;

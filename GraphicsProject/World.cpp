@@ -13,11 +13,13 @@ void World::start()
 	m_quad.start();
 
 	//create camera transforms
-	m_camra.setTransform(glm::lookAt(
+	/*m_camra.setTransform(glm::lookAt(
 		glm::vec3(5.f, 5.0f, 5.0f),
 		glm::vec3(0.0f),
 		glm::vec3(0.0f, 1.0f, 0.0f)
-	));
+	));*/
+	m_camra.setPosition(glm::vec3(1.0f, 1.0f, 1.0f));
+	m_camra.setTheta(45.0f);
 
 	m_projectionMatrix = glm::perspective(
 		m_camra.getFeildOfVeiw() * glm::pi<float>() / 180.0f,
@@ -42,5 +44,5 @@ void World::end()
 
 glm::mat4 World::getProjectionViewMode1()
 {
-	return m_projectionMatrix * m_camra.getTransform() * m_quad.getTransform();
+	return m_projectionMatrix * m_camra.getVeiwMatrix() * m_quad.getTransform();
 }

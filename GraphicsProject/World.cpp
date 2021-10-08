@@ -13,6 +13,8 @@ void World::start()
 	//Initalizes the obj mesh
 	m_objMesh.load("Lucy.obj", false);
 	//Initialized the quad;
+	m_quad.setTansform(glm::mat4(10.0f));
+	m_quad.setColor(glm::vec4(0.2f, 0.8f, 0.6f, 1.0f));
 	m_quad.start();
 	//Inotializes the light
 	m_light.setDirection(glm::vec3(-1.0f));
@@ -22,9 +24,9 @@ void World::start()
 	m_light.setSpecularPower(1.0f);
 
 	//create camera transforms
-	Transform cameraTransform = m_camra.getTransform();
+	Transform cameraTransform = m_camra.getTransform();/*
 	cameraTransform.setPosition(glm::vec3(1.0f));
-	cameraTransform.setRotation(glm::vec3(45.0f, -45.0f, 0.0f));
+	cameraTransform.setRotation(glm::vec3(45.0f, -45.0f, 0.0f));*/
 	m_camra.setTransform(cameraTransform);
 	/*m_camra.setTransform(glm::lookAt(
 		glm::vec3(5.f, 5.0f, 5.0f),
@@ -127,7 +129,7 @@ void World::draw(aie::ShaderProgram* shader)
 	shader->bindUniform("lightAmbient", m_light.getAmbient());
 	shader->bindUniform("lightDiffuse", m_light.getDiffuse());
 	shader->bindUniform("lightSpecular", m_light.getSpecular());
-	shader->bindUniform("lightSpecularPower", m_light.getSpecularPower());
+	shader->bindUniform("specularPower", m_light.getSpecularPower());
 	m_quad.draw(shader);
 	shader->bindUniform("modelMatrix", m_objTransform);
 	m_objMesh.draw();

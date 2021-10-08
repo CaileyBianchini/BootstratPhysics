@@ -11,7 +11,7 @@ Engine::Engine() : Engine(1280, 720, "Window")
 Engine::Engine(int width, int height, const char* tittle)
 {
 	m_world = new World(width, height);
-	m_world->setWindow(m_window);
+
 	m_width = width;
 	m_height = height;
 	m_tittle = tittle;
@@ -21,7 +21,6 @@ Engine::Engine(int width, int height, const char* tittle)
 Engine::~Engine()
 {
 	delete m_world;
-	delete m_shader;
 }
 int Engine::run()
 {

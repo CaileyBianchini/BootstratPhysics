@@ -65,4 +65,24 @@
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="earth_lights.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="earth_normal.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="earth_specular.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="earth_cloud.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="earth_cloud_trans.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="earth_diffuse.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
